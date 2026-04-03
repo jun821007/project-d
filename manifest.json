@@ -1,0 +1,13 @@
+﻿{
+  "id": "/project-d/",
+  "name": "出貨前設定極簡中控台",
+  "short_name": "出貨前設定",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "lang": "zh-Hant",
+  "orientation": "portrait"
+}
