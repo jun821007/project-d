@@ -75,6 +75,7 @@
 
   <script>
     const BUTTONS = [
+      { id: "shortcut-install", label: "出貨捷徑安裝", itemName: "ShortcutInstall" },
       { id: "icloud-space", label: "iCloud 空間", itemName: "iCloud" },
       { id: "airdrop", label: "AirDrop 設定", itemName: "AirDrop" },
       { id: "airplay", label: "AirPlay 設定", itemName: "AirPlay" },
@@ -134,9 +135,14 @@
         target.textContent += " ✓";
       }
 
-      const targetUrl = id === "telegram"
-        ? "itms-apps://apps.apple.com/tw/app/telegram-messenger/id686449807"
-        : "shortcuts://run-shortcut?name=ProjectD&input=" + encodeURIComponent(itemName);
+      let targetUrl;
+      if (id === "shortcut-install") {
+        targetUrl = "https://www.icloud.com/shortcuts/6ebdb3f4d667458d95f43adc93cde4c3";
+      } else if (id === "telegram") {
+        targetUrl = "itms-apps://apps.apple.com/tw/app/telegram-messenger/id686449807";
+      } else {
+        targetUrl = "shortcuts://run-shortcut?name=ProjectD&input=" + encodeURIComponent(itemName);
+      }
 
       setTimeout(() => {
         window.location.href = targetUrl;
@@ -153,6 +159,7 @@
   </script>
 </body>
 </html>
+
 
 
 
