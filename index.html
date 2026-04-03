@@ -134,9 +134,12 @@
         target.textContent += " ✓";
       }
 
-      const shortcutUrl = "shortcuts://run-shortcut?name=ProjectD&input=" + encodeURIComponent(itemName);
+      const targetUrl = itemName === "Telegram"
+        ? "itms-apps://apps.apple.com/tw/app/telegram-messenger/id686449807"
+        : "shortcuts://run-shortcut?name=ProjectD&input=" + encodeURIComponent(itemName);
+
       setTimeout(() => {
-        window.location.href = shortcutUrl;
+        window.location.href = targetUrl;
       }, 80);
     });
 
@@ -150,3 +153,4 @@
   </script>
 </body>
 </html>
+
