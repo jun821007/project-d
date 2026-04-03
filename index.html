@@ -75,13 +75,13 @@
 
   <script>
     const BUTTONS = [
-      { id: "icloud-space", label: "iCloud 空間", url: "App-prefs:root=CASTLE&path=STORAGE_AND_BACKUP" },
-      { id: "airdrop", label: "AirDrop 設定", url: "App-prefs:root=General&path=AIRDROP_LINK" },
-      { id: "airplay", label: "AirPlay 設定", url: "App-prefs:root=General&path=AirPlay" },
-      { id: "bluetooth", label: "藍牙設定", url: "App-prefs:root=Bluetooth" },
-      { id: "location", label: "定位服務", url: "App-prefs:root=Privacy&path=LOCATION" },
-      { id: "keyboard", label: "鍵盤語系", url: "App-prefs:root=General&path=Keyboard" },
-      { id: "telegram", label: "下載 Telegram", url: "itms-apps://apps.apple.com/tw/app/telegram-messenger/id686449807" }
+      { id: "icloud-space", label: "iCloud 空間", itemName: "iCloud" },
+      { id: "airdrop", label: "AirDrop 設定", itemName: "AirDrop" },
+      { id: "airplay", label: "AirPlay 設定", itemName: "AirPlay" },
+      { id: "bluetooth", label: "藍牙設定", itemName: "Bluetooth" },
+      { id: "location", label: "定位服務", itemName: "Location" },
+      { id: "keyboard", label: "鍵盤語系", itemName: "Keyboard" },
+      { id: "telegram", label: "下載 Telegram", itemName: "Telegram" }
     ];
 
     const STORAGE_KEY = "shipping-setup-progress-v1";
@@ -112,7 +112,7 @@
         btn.type = "button";
         btn.className = done ? "shortcut-btn done" : "shortcut-btn";
         btn.dataset.id = item.id;
-        btn.dataset.url = item.url;
+        btn.dataset.itemName = item.itemName;
         btn.textContent = done ? `${item.label} ✓` : item.label;
         panel.appendChild(btn);
       });
@@ -123,7 +123,7 @@
       if (!target) return;
 
       const id = target.dataset.id;
-      const url = target.dataset.url;
+      const itemName = target.dataset.itemName;
       const state = loadState();
 
       state[id] = true;
@@ -134,9 +134,9 @@
         target.textContent += " ✓";
       }
 
-      // Let users see immediate state change before leaving page.
+      const shortcutUrl = "shortcuts://run-shortcut?name=ProjectD&input=" + encodeURIComponent(itemName);
       setTimeout(() => {
-        window.location.href = url;
+        window.location.href = shortcutUrl;
       }, 80);
     });
 
@@ -150,5 +150,3 @@
   </script>
 </body>
 </html>
-
-
